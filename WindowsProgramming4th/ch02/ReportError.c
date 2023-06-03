@@ -27,6 +27,7 @@ VOID ReportError (LPCSTR userMessage, DWORD exitCode, BOOL printErrorMessage)
         }
 
         if (lpvSysMsg != NULL)
+            // Frees the specified local memory object and invalidates its handle
             LocalFree(lpvSysMsg);
     }
 
