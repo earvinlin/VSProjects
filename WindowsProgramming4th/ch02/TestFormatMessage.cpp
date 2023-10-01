@@ -6,9 +6,11 @@
 #include <stdio.h>
 
 // use gcc compiler must return value (cannot use void)
-int main(void)
+//int main(void)
+void main(void)
 {
-    LPWSTR pMessage = L"%1!*.*s! %4 %5!*s!";
+    
+     pMessage = L"%1!*.*s! %4 %5!*s!";
     DWORD_PTR pArgs[] = { (DWORD_PTR)4, (DWORD_PTR)2, (DWORD_PTR)L"Bill",  // %1!*.*s! refers back to the first insertion string in pMessage
          (DWORD_PTR)L"Bob",                                                // %4 refers back to the second insertion string in pMessage
          (DWORD_PTR)6, (DWORD_PTR)L"Bill" };                               // %5!*s! refers back to the third insertion string in pMessage
@@ -25,7 +27,8 @@ int main(void)
                        (va_list*)pArgs))
     {
         wprintf(L"Format message failed with 0x%x\n", GetLastError());
-        return 0;
+//        return 0;
+        return;
     }
 
     // Buffer contains "  Bi Bob   Bill".

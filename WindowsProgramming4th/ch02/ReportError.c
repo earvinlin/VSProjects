@@ -15,7 +15,8 @@ VOID ReportError (LPCSTR userMessage, DWORD exitCode, BOOL printErrorMessage)
 
     _ftprintf(stderr, _T("%s\n"), userMessage);
     if (printErrorMessage) {
-        eMsgLen = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
+        eMsgLen = FormatMessage(
+            FORMAT_MESSAGE_ALLOCATE_BUFFER |
             FORMAT_MESSAGE_FROM_SYSTEM,
             NULL, errNum,
             MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
