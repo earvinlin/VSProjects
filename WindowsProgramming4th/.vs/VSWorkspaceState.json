@@ -3,7 +3,12 @@
     "",
     "\\ch01",
     "\\ch02",
-    "\\test"
+    "\\INCLUDE",
+    "\\test",
+    "\\《SOURCE_CODES》",
+    "\\《SOURCE_CODES》\\WSP4_Examples",
+    "\\《SOURCE_CODES》\\WSP4_Examples\\INCLUDE"
   ],
+  "SelectedNode": "\\test\\testFile.txt",
   "PreviewInSolutionExplorer": false
 }
