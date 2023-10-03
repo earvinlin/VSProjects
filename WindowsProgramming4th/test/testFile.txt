@@ -4,16 +4,15 @@ For my Learning Windows Programming using C / C++.
 
 I must use it to write any codes that I want to do!!!
 
-================================================
+=========================================================
+This is a test file.
+For my Learning Windows Programming using C / C++.
+I must use it to write any codes that I want to do!!!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The number of words is too few
-so I have to write more 
-By the way, not support non-ascii code
-today, i see plug-in web page
-the skill is too hard
-I'm too far behind
-but now I do it for fun
-therefore, there won't be too much unnecessay pressure
-instead, I am calm and happy now. 
-
-================================================
+@@@=========================================================
+This is a test file.
+For my Learning Windows Programming using C / C++.
+I must use it to write any codes that I want to do!!!
+@@@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+END!!!!

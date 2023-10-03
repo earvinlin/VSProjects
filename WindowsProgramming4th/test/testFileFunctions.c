@@ -28,26 +28,17 @@ int _tmain(int argc, LPTSTR argv[])
 
 
 	// 試著列印出檔案內容，buffer不會自動清空，所以，最後一次可能會有問題。
-	int i = 0;
 	while (ReadFile(hIn, buffer, BUF_SIZE, &nIn, NULL) && (nIn != 0)) {
 //		printf("%d : %d\n", i, nIn);
 //		printf("%s\n", buffer);
-		i++;
 
-		if (nIn > 0 && nIn <= BUF_SIZE - 1)
-		{
-			buffer[nIn] = '\0'; // NULL character
-
-			_tprintf(TEXT("Data read from %s (%d bytes): \n"), argv[1], nIn);
+//		if (nIn > 0 && nIn <= BUF_SIZE - 1)
+		if (nIn > 0 && nIn <= BUF_SIZE) {
+			if (nIn < BUF_SIZE) {
+				buffer[nIn] = '\0'; // NULL character
+			}
+//			_tprintf(TEXT("Data read from %s (%d bytes): \n"), argv[1], nIn);
 			printf("%s\n", buffer);
-		}
-		else if (nIn == 0)
-		{
-			_tprintf(TEXT("No data read from file %s\n"), argv[1]);
-		}
-		else
-		{
-			printf("\n ** Unexpected value for dwBytesRead ** \n");
 		}
 	}
 
