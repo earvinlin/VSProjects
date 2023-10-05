@@ -1,14 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ch01",
-    "\\ch02",
-    "\\INCLUDE",
-    "\\test",
-    "\\《SOURCE_CODES》",
-    "\\《SOURCE_CODES》\\WSP4_Examples",
-    "\\《SOURCE_CODES》\\WSP4_Examples\\INCLUDE"
+    "\\test"
   ],
-  "SelectedNode": "\\test\\testFile.txt",
+  "SelectedNode": "\\test\\variadic.c",
   "PreviewInSolutionExplorer": false
 }

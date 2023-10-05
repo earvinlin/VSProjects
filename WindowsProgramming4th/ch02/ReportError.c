@@ -1,4 +1,4 @@
-#include "INCLUDE\Everything.h"
+#include "Everything.h"
 
 /* 回報系統錯誤的公用函式
  取得錯誤碼並轉換為系統錯誤訊息
@@ -7,6 +7,9 @@
  exitCode          : 0   - 返回
                      > 0 - 以此碼呼叫ExitProcess
  printErrorMessage : 如果設定則顯示最後的系統錯誤訊息
+
+ ※ 編譯指令 ※
+ CL /IC:\WORKSPACES\GithubProjects\VSProjects\WindowsProgramming4th\INCLUDE testFunction.c
  */
 VOID ReportError (LPCSTR userMessage, DWORD exitCode, BOOL printErrorMessage)
 {
