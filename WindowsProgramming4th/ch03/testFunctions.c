@@ -7,6 +7,40 @@
 #include <memory.h>
 #include <tchar.h>
 
+
+int _tmain(int argc, LPTSTR argv[])
+{
+	HANDLE hInFile;
+	int iPos = 1;
+
+	printf("argc: %d\n", argc);
+	for (int i = 0; i < argc; i++) {
+		printf("argv[%d] : %s\n", i, argv[i]);
+	}
+
+	// Create file
+	hInFile = CreateFile(argv[iPos], GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (hInFile == INVALID_HANDLE_VALUE) {
+		DWORD dw = GetLastError();
+		printf("error-msg : %d\n", dw);
+		_tprintf(TEXT("Terminal failure: Unable to open file \"%s\" for read.\n"), argv[1]);
+		return;
+	}
+
+	printf("Read OK!!!\n");
+
+//	PLARGE_INTEGER lpFileSize = NULL;
+	LARGE_INTEGER lpFileSize;
+	GetFileSizeEx(hInFile, &lpFileSize);
+
+	printf("size is %lld\n", lpFileSize.QuadPart);
+
+	printf("Run END!!\n");
+
+	return 0;
+}
+
+/* -- TEST OK --
 int _tmain(int argc, _TCHAR* argv[])
 {
 	HANDLE hFile;
@@ -27,9 +61,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
+*/
 
-
-/*
+/* -- Failure --
 #include <windows.h>
 #include <tchar.h>
 

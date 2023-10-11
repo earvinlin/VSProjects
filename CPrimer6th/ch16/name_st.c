@@ -18,6 +18,8 @@ char* s_gets(char* st, int n)
 	char* ret_val;
 	char* find;
 	ret_val = fgets(st, n, stdin);
+	printf("n= %d\n", n);
+
 	if (ret_val)
 	{
 		find = strchr(st, '\n'); // look for newline
