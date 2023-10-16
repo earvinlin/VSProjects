@@ -60,14 +60,14 @@ int _tmain(int argc, LPTSTR argv[])
 	OVERLAPPED ov = { 0, 0, 0, 0, NULL }, ovZero = { 0, 0, 0, 0, NULL };
 	HEADER header = { 0, 0 };
 	SYSTEMTIME currentTime;
-	BOOLEAN headerChange, recordChange;
+	BOOLEAN headerChange, recordChange;		// BOOLEAN : BYTE(8bit)
 	int prompt = (argc <= 3) ? 1 : 0;
 
-	if (argc < 2) {
+	if (argc < 2) {	// 沒有傳入參數
 		ReportError(_T("Usage: RecordAccess file [nrec [prompt]]"), 1, FALSE);
 	}
 
-	/*
+	/* 
 	* _ttoi(), atoi() : 將CString轉換為整數(ex: "20000" --> 20000)
 	* OPEN_EXISTING   : 一律開啟檔案。
 	* CREATE_ALWAYS   : 一律建立新的檔案。
@@ -78,7 +78,7 @@ int _tmain(int argc, LPTSTR argv[])
 		GENERIC_READ | GENERIC_WRITE,	//
 		0,								// 如果此參數為零且 CreateFile 成功，則無法共用檔案或裝置，而且在關閉檔案或裝置的控制碼之前無法再次開啟。 
 		NULL,							// 如果此參數為 Null，則應用程式可建立的任何子進程無法繼承 CreateFile 傳回的控制碼，且與傳回控制碼相關聯的檔案或裝置會取得預設的安全性描述元。
-		OpenOption,						// 要對存在或不存在的檔案或裝置採取的動作。
+		OpenOption,						// 要對存在或不存在的檔案或裝置採取的動作；本例只可為 「OPEN_EXISTING」 or 「CREATE_ALWAYS」。
 		FILE_FLAG_RANDOM_ACCESS,		// 檔案或裝置屬性和旗標；(FILE_FLAG_RANDOM_ACCESS : 存取是隨機的。系統可使用這個做為最佳化檔案快取的提示。)
 		NULL							// 具有 GENERIC_READ 存取權限之範本檔案的有效控制碼。
 	);
@@ -101,7 +101,7 @@ int _tmain(int argc, LPTSTR argv[])
 		currentPtr.QuadPart = (LONGLONG)sizeof(RECORD) * _ttoi(argv[2]) + sizeof(HEADER);
 		if (!SetFilePointerEx(hFile,	// [in] 檔案的控制碼。
 			currentPtr,					// [in] 要移動檔案指標的位元組數目。 
-			NULL,						// [out, optional] 要接收新檔案指標之變數的指標。 如果此參數為 Null，則不會傳回新的檔案指標。 
+			NULL,						// [out, optional] 要接收新檔案指標之變數的指標。如果此參數為 Null，則不會傳回新的檔案指標。 
 			FILE_BEGIN					// [in] 檔案指標移動的起點。
 			)) {
 			ReportError(_T("RecordAccess Error: Set Pointer."), 4, TRUE);
