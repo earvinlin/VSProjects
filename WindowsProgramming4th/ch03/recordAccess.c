@@ -94,18 +94,16 @@ int _tmain(int argc, LPTSTR argv[])
 			sizeof(header), // [in] 要寫入檔案或裝置的位元組數目。
 			&nXfer,			// [out, optional] 使用同步 hFile 參數時，接收寫入位元組數目的變數指標。
 			&ovZero			// [in, out, optional] 如果hFile參數是以FILE_FLAG_OVERLAPPED開啟，則需要重迭結構的指標，否則此參數可以是Null。
-		)
-			) {
+			)) {
 			ReportError(_T("RecordAccess Error: WriteFile header."), 4, TRUE);
 		}
 
 		currentPtr.QuadPart = (LONGLONG)sizeof(RECORD) * _ttoi(argv[2]) + sizeof(HEADER);
-		if (!SetFilePointerEx(hFile,		//
-			currentPtr,	// 
-			NULL,		//
-			FILE_BEGIN	//
-		)
-			) {
+		if (!SetFilePointerEx(hFile,	// [in] 檔案的控制碼。
+			currentPtr,					// [in] 要移動檔案指標的位元組數目。 
+			NULL,						// [out, optional] 要接收新檔案指標之變數的指標。 如果此參數為 Null，則不會傳回新的檔案指標。 
+			FILE_BEGIN					// [in] 檔案指標移動的起點。
+			)) {
 			ReportError(_T("RecordAccess Error: Set Pointer."), 4, TRUE);
 		}
 		if (!SetEndOfFile(hFile)) {
