@@ -116,12 +116,21 @@ int _tmain(int argc, LPTSTR argv[])
 		return 0;
 	}
 
+	/*
+	BOOL ReadFile(
+		[in]                HANDLE       hFile,
+		[out]               LPVOID       lpBuffer,
+		[in]                DWORD        nNumberOfBytesToRead,
+		[out, optional]     LPDWORD      lpNumberOfBytesRead,
+		[in, out, optional] LPOVERLAPPED lpOverlapped
+	);
+	*/
 	/* Read the file header to find the number of records and non-empty records */
 	if (!ReadFile(hFile,	// [in] 裝置的控制碼 (例如，檔案、檔案資料流程、實體磁片、磁片區、主控台緩衝區、磁帶機、通訊端、通訊資源、郵件集或管道) 。
-		&header,			// [out] 緩衝區的指標，接收從檔案或裝置讀取的資料。
-		sizeof(HEADER),		// [in] 要讀取的位元組數目上限。
-		&nXfer,				// [out, optional] 使用同步 hFile 參數時，接收讀取位元組數目之變數的指標。 ReadFile 會將此值設定為零，再進行任何工作或錯誤檢查。 如果這是非同步作業，以避免發生錯誤的結果，請使用 Null 作為此參數。
-		&ovZero				// [in, out, optional] 如果hFile參數是以FILE_FLAG_OVERLAPPED開啟，則需要重迭結構的指標，否則可以是Null。
+		&header,			// [out] A pointer to the buffer that receives the data read from a file or device.
+		sizeof(HEADER),		// [in] The maximum number of bytes to be read.
+		&nXfer,				// [out, optional] A pointer to the variable that receives the number of bytes read when using a synchronous hFile parameter.
+		&ovZero				// [in, out, optional] 如果hFile參數是以FILE_FLAG_OVERLAPPED開啟，則需要重迭(OVERLAPPED)結構的指標，否則可以是Null。
 		)) {
 		ReportError(_T("RecordAccess Error: ReadFile header."), 6, TRUE);
 	}
@@ -138,6 +147,7 @@ int _tmain(int argc, LPTSTR argv[])
 			_tprintf(_T("Enter r(ead)/w(rite)/d(elete)/qu(it) record#\n"));
 		}
 
+		// 依是否有宣告unicode決定呼叫 scanf() or wscanf() 
 		_tscanf(_T("%c%u%c"), &command, &recNo, &extra);
 		if (command == _T('q')) {
 			break;
@@ -149,13 +159,14 @@ int _tmain(int argc, LPTSTR argv[])
 			continue;
 		}
 
-		currentPtr.QuadPart = (LONGLONG)recNo * sizeof(RECORD) + sizeof(HEADER);	// 儲存資料容量大小
+		currentPtr.QuadPart = (LONGLONG)recNo * sizeof(RECORD) + sizeof(HEADER);	// 定位指標至指定的資料筆數位置
 		ov.Offset = currentPtr.LowPart;
 		ov.OffsetHigh = currentPtr.HighPart;
 
 		if (!ReadFile(hFile, &record, sizeof(RECORD), &nXfer, &ov)) {
 			ReportError(_T("RecordAccess: ReadFile failure."), 7, FALSE);
 		}
+
 		GetSystemTime(&currentTime); /* Use to update record time fields */
 		record.recordLastRefernceTime = currentTime;
 		if (command == _T('r') || command == _T('d')) { /* Report record contents, if any */

@@ -12,7 +12,7 @@ int _tmain(int argc, LPTSTR argv[])
 {
 	HANDLE hIn, hOut;
 	DWORD nIn, nOut;
-	TCHAR buffer[BUF_SIZE] = { 0 };;
+	TCHAR buffer[BUF_SIZE] = { 0 };
 
 	if (argc != 2) {
 		printf("Input create file name.\n");
