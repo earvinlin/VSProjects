@@ -5,7 +5,7 @@ int main(void)
 {
 	int y = 5;
 	PSQR(y);
-	PSQR(2 + 4);
+	PSQR((2 + 4));
 
 	return 0;
 }
