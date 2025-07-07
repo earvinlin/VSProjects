@@ -28,10 +28,10 @@ int main()
 
     fgets(comment, 80, stdin);
     sprintf(cmd, "echo '%s %s' >> reports.log", comment, now());
-    printf("cmd= %s\n", cmd);
+//    printf("cmd= %s\n", cmd);
     system(cmd);
 
-    printf("%zu\n", strlen(comment));
+//    printf("%zu\n", strlen(comment));
 
     return 0;
 }
