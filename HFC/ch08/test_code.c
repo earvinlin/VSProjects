@@ -1,6 +1,14 @@
+/**
+ * gcc -c encrypt.c -o encrypt.o
+ * gcc -c checksum.c -o checksum.o
+ * gcc test_code.c encrypt.o checksum.o -o test_code
+ */
+
 #include <stdio.h>
-#include "encrypt.h"
-#include "checksum.h"
+//#include "encrypt.h"
+//#include "checksum.h"
+#include <encrypt.h>
+#include <checksum.h>
 
 int main()
 {
@@ -14,3 +22,4 @@ int main()
 
 	return 0;
 }
+

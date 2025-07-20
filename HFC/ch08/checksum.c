@@ -1,4 +1,5 @@
-#include "checksum.h"
+//#include "checksum.h"
+#include <checksum.h>
 
 int checksum(char *message)
 {
@@ -9,3 +10,4 @@ int checksum(char *message)
 	}
 	return c;
 }
+

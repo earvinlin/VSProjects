@@ -1,4 +1,5 @@
-#include "encrypt.h"
+//#include "encrypt.h"
+#include <encrypt.h>
 
 void encrypt(char* message)
 {
@@ -7,3 +8,4 @@ void encrypt(char* message)
 		message++;
 	}
 }
+
