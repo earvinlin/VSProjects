@@ -3,3 +3,5 @@
 WindowsProgramming4th/.vs/
 WindowsProgramming4th/.vs/*
 *.swp
+*.DS_Store
+
